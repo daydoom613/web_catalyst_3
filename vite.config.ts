@@ -8,12 +8,14 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    allowedHosts: [
+      "jyqgd4-8080.csb.app", // ✅ your sandbox host
+      "*.csb.app", // ✅ allow all CodeSandbox hosts (optional, safer for future sandboxes)
+    ],
   },
-  plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
-  ].filter(Boolean),
+  plugins: [react(), mode === "development" && componentTagger()].filter(
+    Boolean
+  ),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
